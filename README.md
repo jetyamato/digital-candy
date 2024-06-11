@@ -12,4 +12,5 @@ Projects used:
 - [Node](https://nodejs.org/en)
 
 Source Code Copyright © 2024 by Joseph Emmanuel F. Tamayo.
+
 All rights reserved for other source code and projects used in developing this project.

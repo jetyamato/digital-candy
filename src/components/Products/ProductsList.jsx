@@ -2,8 +2,12 @@ import React from "react";
 
 import "./ProductsList.css";
 import ProductCard from "./ProductCard";
+import useData from "../../hooks/useData";
 
 const ProductsList = () => {
+  const { data, errors } = useData("/products");
+  console.log("Data", data);
+
   return (
     <section className="products_list_section">
       <header className="align_center products_list_header">
@@ -18,14 +22,20 @@ const ProductsList = () => {
       </header>
 
       <div className="products_list">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {errors && <em className="form_error">{errors}</em>}
+        {data?.products &&
+          data.products.map((product) => (
+            <ProductCard
+              key={product._id}
+              id={product._id}
+              image={product.images[0]}
+              price={product.price}
+              title={product.title}
+              rating={product.reviews.rate}
+              ratingCounts={product.reviews.counts}
+              stock={product.stock}
+            />
+          ))}
       </div>
     </section>
   );

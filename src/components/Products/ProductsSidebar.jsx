@@ -2,20 +2,27 @@ import React from "react";
 
 import "./ProductsSidebar.css";
 import LinkWithIcon from "../Navbar/LinkWithIcon";
-import Rocket from "../../assets/rocket.png";
+import useData from "../../hooks/useData";
 
 const ProductsSidebar = () => {
+  const { data: categories, errors } = useData("/category");
+
   return (
     <aside className="products_sidebar">
       <h2>Category</h2>
 
       <div className="category_links">
-        <LinkWithIcon
-          title="Electronics"
-          link="products?category=electronics"
-          emoji={Rocket}
-          sidebar={true}
-        />
+        {errors && <em className="form_error">{errors}</em>}
+        {categories &&
+          categories.map((category) => (
+            <LinkWithIcon
+              key={category._id}
+              title={category.name}
+              link={`products?category=${category.name}`}
+              emoji={`http://localhost:5000/category/${category.image}`}
+              sidebar={true}
+            />
+          ))}
       </div>
     </aside>
   );

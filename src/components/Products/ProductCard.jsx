@@ -8,8 +8,10 @@ import { NavLink } from "react-router-dom";
 const ProductCard = ({
   id,
   image,
+  images,
   price,
   title,
+  description,
   rating,
   ratingCounts,
   stock,
@@ -17,7 +19,15 @@ const ProductCard = ({
   return (
     <article className="product_card">
       <div className="product_image">
-        <NavLink to={`product/${id}`}>
+        <NavLink
+          to={`/product/${id}`}
+          id={id}
+          images={images}
+          price={price}
+          title={title}
+          description={description}
+          stock={stock}
+        >
           <img
             src={`http://localhost:5000/products/${image}`}
             alt="product image"

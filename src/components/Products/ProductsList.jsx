@@ -73,18 +73,7 @@ const ProductsList = () => {
         {errors && <em className="form_error">{errors}</em>}
         {data?.products &&
           data.products.map((product) => (
-            <ProductCard
-              key={product._id}
-              id={product._id}
-              image={product.images[0]}
-              images={product.images}
-              price={product.price}
-              title={product.title}
-              description={product.description}
-              rating={product.reviews.rate}
-              ratingCounts={product.reviews.counts}
-              stock={product.stock}
-            />
+            <ProductCard key={product._id} product={product} />
           ))}
         {isLoading && skeletons.map((sk) => <ProductCardSkeleton key={sk} />)}
       </div>
